@@ -18,12 +18,16 @@ public class RequestCount {
         private final IntWritable one = new IntWritable(1);
         private Text word = new Text();
 
+        private IntWritable reqCount = new IntWritable();
+
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             StringTokenizer itr = new StringTokenizer(value.toString());
             while (itr.hasMoreTokens()) {
                 word.set(itr.nextToken().replaceAll("[\\W]", ""));  // ignore whitespace and punctuation
-                context.write(word, one);
+
+                reqCount
+                context.write(reqCount, one);
             }
         }
     }
