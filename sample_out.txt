@@ -1,0 +1,26 @@
+if input is named input_access_log/access.log
+"make all" will create all the files
+
+make all's output will be in:
+	Question 1: url2
+	Q2: code1
+	Q3: ipbyte1
+	Q4: ipcount2
+	Q5: month2
+	Q6: day2
+
+otherwise input:
+	./gradlew run --args="<JobName> <input folder> <out1 folder>"
+	./gradlew run --args="<JobName2> <out1 folder> <out2 folder>"
+output:
+	cat out_folder\part-r*
+JobName list:
+	Q1: UrlCount, UrlCount2
+	Q2: CodeCount
+	Q3: IpBytes
+	Q4: IpCount, IpCount2
+	Q5: MonthCount, MonthCount2
+	Q6: DayBytes, DayBytes2
+
+Examples of individual output folders are inside the example_out_dir folder.
+

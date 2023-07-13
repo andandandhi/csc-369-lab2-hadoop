@@ -1,16 +1,14 @@
 package csc369;
 
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.StringTokenizer;
-
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
-public class AccessLog2 {
+import java.io.IOException;
+import java.util.Iterator;
+
+public class DayBytes2 {
 
     public static final Class OUTPUT_KEY_CLASS = LongWritable.class;
     public static final Class OUTPUT_VALUE_CLASS = Text.class;
@@ -21,10 +19,10 @@ public class AccessLog2 {
 	protected void map(LongWritable key, Text value,
 			   Context context) throws IOException, InterruptedException {
 	    String[] sa = value.toString().split("\t");
-	    Text url = new Text();
-            url.set(sa[0]);
+	    Text day = new Text();
+            day.set(sa[0]);
             LongWritable count = new LongWritable(Long.parseLong(sa[1]));
-	    context.write(count, url);
+	    context.write(count, day);
         }
     }
 

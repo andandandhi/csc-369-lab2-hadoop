@@ -1,0 +1,17 @@
+0 ip
+1 unused
+2 userid 
+3 [dd/mmm/year:tt:tt:tt
+4 timezone]
+5 "GET         client method
+6 urlpath
+7 HTTP/1.1"    protocol
+8 code
+9 bytes
+
+1. count 6
+2. 8 count
+3. total:9 specific:0
+4. count 0 specific:6 
+5. mmm/year   chronologically(yyyymm)
+6. dd total:9 

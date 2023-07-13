@@ -8,27 +8,21 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.StringTokenizer;
 
-public class RequestCount {
-    public static final Class OUTPUT_KEY_CLASS = IntWritable.class;
-    public static final Class OUTPUT_VALUE_CLASS = Text.class;
+public class DayBytes {
+    public static final Class OUTPUT_KEY_CLASS = Text.class;
+    public static final Class OUTPUT_VALUE_CLASS = IntWritable.class;
 
-    public static class MapperImpl extends Mapper<LongWritable, Text, IntWritable, Text> {
+    public static class MapperImpl extends Mapper<LongWritable, Text, Text, IntWritable> {
         private final IntWritable one = new IntWritable(1);
-        private Text word = new Text();
-
-        private IntWritable reqCount = new IntWritable();
 
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-            StringTokenizer itr = new StringTokenizer(value.toString());
-            while (itr.hasMoreTokens()) {
-                word.set(itr.nextToken().replaceAll("[\\W]", ""));  // ignore whitespace and punctuation
-
-                reqCount
-                context.write(reqCount, one);
-            }
+            String[] sa = value.toString().split(" ");
+            Text day = new Text();
+            day.set(sa[3].split("/")[0].substring(1));
+            IntWritable bytes = new IntWritable(Integer.parseInt(sa[9]));
+            context.write(day, bytes);
         }
     }
 
